@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useState, useRef, useEffect } from 'react';
+import { useEffect } from 'react';
 import './register.css';
 import { path_db } from '../config';
 
@@ -31,6 +31,17 @@ const Register = () => {
     }
   }
   function ir_paso3() {
+    var genero_t = document.getElementById('REGISTER_TEXT_GENERO').value;
+    var correo_t = document.getElementById('REGISTER_TEXT_CORREO').value;
+    var fecha_nac_t = document.getElementById('REGISTER_TEXT_FECHANAC').value;
+    if(!genero_t || !correo_t || !fecha_nac_t){
+      alert("LLENA LOS CAMPOS FALTANTES!")
+      return
+    }
+    if(!(genero_t === "M" || genero_t === "F")){
+      alert("GENERO DEBE SER M o F")
+      return
+    }
     var div1 = document.getElementById('REGISTER_CUADRO2');
     var div2 = document.getElementById('REGISTER_CUADRO3');
     div2.classList.remove('oculto');
@@ -57,46 +68,49 @@ const Register = () => {
     var password_t = document.getElementById('REGISTER_TEXT_PASS').value;
     var confirm_password_t = document.getElementById('REGISTER_TEXT_CONPASS').value;
     if(password_t){
-      if((password_t === confirm_password_t)){
-        var datosIngreso
-        datosIngreso = {
-          nombre: name_t,
-          apellido: apellido_t,
-          genero: genero_t,
-          correo: correo_t,
-          fecha_nacimiento: fecha_nac_t,
-          password: password_t
-        }
-        
-        console.log(datosIngreso)
-        /*
-        try {
-          const response = await fetch(path_db + '/register', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(datosIngreso),
-          });
-    
-          if (response.ok) {
-            const result = await response.json();
-            console.log(result)
-            alert("Usuario Registrado")
-            ir_login()
-          } else {
-            console.log('Error en la solicitud', response.statusText);
-            alert("ERROR: User Ya existe. Intentelo de nuevo")
-            ir_login()
-          }
-        } catch (error) {
-          console.log("OCURRIO UN ERROR AL REGISTRAR USUARIO")
-        }
-        */
+      if(!(password_t.length >=8 && /[A-Z]/.test(password_t) && /\d/.test(password_t))){
+        alert("Password debe contener al menos:\n* Minimo 8 caracteres\n* Una letra mayuscula\n* Un numero")
+        return
       }
       else{
-        alert("LOS PASSWORDS NO COINCIDEN")
+        if((password_t === confirm_password_t)){
+          var datosIngreso
+          datosIngreso = {
+            nombre: name_t,
+            apellido: apellido_t,
+            genero: genero_t,
+            correo: correo_t,
+            fecha_nacimiento: fecha_nac_t,
+            password: password_t
+          }
+          try {
+            const response = await fetch(path_db + '/register', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(datosIngreso),
+            });
+            if (response.ok) {
+              const result = await response.json();
+              alert(result.message)
+              ir_login()
+            } else {
+              console.log('Error en la solicitud', response.statusText);
+              const result = await response.json();
+              console.log(result)
+              alert(result.message)
+              ir_login()
+            }
+          } catch (error) {
+            console.log("OCURRIO UN ERROR AL REGISTRAR USUARIO")
+          }
+        }
+        else{
+          alert("LOS PASSWORDS NO COINCIDEN")
+        }
       }
+      
     }else{
       alert("INGRESE LOS CAMPOS")
     }

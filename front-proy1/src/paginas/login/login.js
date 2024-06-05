@@ -22,7 +22,7 @@ const Login = () => {
   
   const ir_dashboard = (user) => {  
     localStorage.setItem('user_logueado', JSON.stringify(user) );
-    navigate('/dashboard');
+    navigate('/register');  //PARA VER SI HAY CAMBIOS, AQUI DEBE LLEVAR AL DASHBOARD
   };
 
   const ir_register = () => {  
@@ -37,11 +37,9 @@ const Login = () => {
     }else{
       try {
         const datosIngreso = {
-          username: user_t,
+          correo: user_t,
           password: pass_t
         }
-        console.log(datosIngreso)
-        /* PETICION AL BACKEND
         const response = await fetch(path_db + '/login', {
           method: 'POST',
           headers: {
@@ -49,11 +47,10 @@ const Login = () => {
           },
           body: JSON.stringify(datosIngreso),
         });
-  
         if (response.ok) {
           const result = await response.json();
           if(result.success === true){
-            //alert("Bienvenido")
+            alert("Bienvenido")
             ir_dashboard(user_t)
           }else{
             alert("ERROR: Datos Incorrectos")
@@ -61,7 +58,6 @@ const Login = () => {
         } else {
           console.log('Error en la solicitud', response.statusText);
         }
-        */
       } catch (error) {
         console.log("OCURRIO UN ERROR AL LOGUEAR USUARIO")
       }

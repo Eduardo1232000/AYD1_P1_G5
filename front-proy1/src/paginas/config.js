@@ -1,1 +1,1 @@
-export const path_db ="ruta backend"
+export const path_db ="http://localhost:8080"
