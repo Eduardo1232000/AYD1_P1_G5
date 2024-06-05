@@ -14,6 +14,10 @@ app.use(express.json({ limit: '50mb' }));
 //RUTAS
 app.use(require('./routes/task.routes'));
 app.use(require('./routes/task.routes-Eduardo'));
+app.use(require('./routes/task.routes-Gladys'));
+app.use(require('./routes/task.routes-Heidy'));
+app.use(require('./routes/task.routes-Kevin'));
+app.use(require('./routes/task.routes-Ruben'));
 
 //EMPEZANDO SERVIDOR
 app.listen(PORT, () => {
