@@ -1,0 +1,2 @@
+* Ejecutar el comando "npm install" para instalar las librerias utilizadas
+* ejecutar el comando "npm run start" para levantar el frontend
