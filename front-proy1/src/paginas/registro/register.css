@@ -1,0 +1,301 @@
+#REGISTER_CUADRO1{
+    position: absolute;
+    top: 10%;
+    left: 39%;
+    background: radial-gradient(circle, transparent 30%, #003B49 70%);
+    background-color: #065063;
+    border-radius: 10px;
+    width: 390px; 
+    height: 80vh; 
+    transition: all 0.5s ease; 
+}
+#REGISTER_TITULO{
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    font-size: 36px;
+    color: white;
+    font-weight: bold;
+}
+#REGISTER_LABEL_BASIC{
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    font-size: 28 px;
+    color: white;
+    font-weight: bold;
+}
+#REGISTER_LABEL_NAME{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    font-size: 18px;
+    color: white;
+}
+#REGISTER_TEXT_NAME{
+    position: absolute;
+    top: 55%;
+    left: 10%;
+    width: 75%;
+    height: 40px;
+    font-size: 18px;
+    border-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    transition: box-shadow 0.5s, border 0.5s;
+}
+#REGISTER_TEXT_NAME:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 30px #2b80b9; /* Iluminación del borde al hacer clic */
+}
+#REGISTER_LABEL_USER{
+    position: absolute;
+    top: 65%;
+    left: 10%;
+    font-size: 18px;
+    color: white;
+}
+#REGISTER_TEXT_USER{
+    position: absolute;
+    top: 70%;
+    left: 10%;
+    width: 75%;
+    height: 40px;
+    font-size: 18px;
+    border-color: rgb(255, 255, 255);
+    border-radius: 6px;
+}
+#REGISTER_TEXT_USER:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 30px #2b80b9; /* Iluminación del borde al hacer clic */
+}
+#REGISTER_BOTON_NEXT1{
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    width: 77%;
+    height: 50px;
+    border-color: transparent;
+    background-color: #2db1ce;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 400ms;
+}
+#REGISTER_BOTON_NEXT1:hover{
+    background-color: #229ab6;
+}
+#LINK_LOGIN{
+    position: absolute;
+    top: 93%;
+    left: 26%;
+    font-size: 16px;
+    color: gray;
+    transition: color 500ms;
+}
+#LINK_LOGIN:hover{
+    color: #3498db;
+    cursor: pointer;
+}
+
+#REGISTER_CUADRO2{
+    position: absolute;
+    top: 10%;
+    left: 39%;
+    background: radial-gradient(circle, transparent 30%, #003B49 70%);
+    background-color: #065063;
+    border-radius: 10px;
+    width: 390px; 
+    height: 80vh; 
+    transition: all 0.5s ease;
+}
+#REGISTER_LABEL_TITULO2{
+    position: absolute;
+    top: 22%;
+    left: 10%;
+    font-size: 28 px;
+    color: white;
+    font-weight: bold;
+}
+#REGISTER_LABEL_GENERO{
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    font-size: 18px;
+    color: white;
+}
+#REGISTER_TEXT_GENERO{
+    position: absolute;
+    top: 35%;
+    left: 10%;
+    width: 15%;
+    height: 40px;
+    font-size: 18px;
+    border-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    transition: box-shadow 0.5s, border 0.5s;
+}
+#REGISTER_TEXT_GENERO:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 30px #2b80b9; /* Iluminación del borde al hacer clic */
+}
+#REGISTER_LABEL_CORREO{
+    position: absolute;
+    top: 45%;
+    left: 10%;
+    font-size: 18px;
+    color: white;
+}
+#REGISTER_TEXT_CORREO{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 75%;
+    height: 40px;
+    font-size: 18px;
+    border-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    transition: box-shadow 0.5s, border 0.5s;
+}
+#REGISTER_TEXT_CORREO:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 30px #2b80b9; /* Iluminación del borde al hacer clic */
+}
+#REGISTER_LABEL_FECHANAC{
+    position: absolute;
+    top: 60%;
+    left: 10%;
+    font-size: 18px;
+    color: white;
+}
+#REGISTER_TEXT_FECHANAC{
+    position: absolute;
+    top: 65%;
+    left: 10%;
+    width: 75%;
+    height: 40px;
+    font-size: 18px;
+    border-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    transition: box-shadow 0.5s, border 0.5s;
+}
+#REGISTER_TEXT_FECHANAC:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 30px #2b80b9; /* Iluminación del borde al hacer clic */
+}
+#REGISTER_BOTON_PREVIOUS2{
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    width: 40%;
+    height: 50px;
+    border-color: transparent;
+    background-color: #2db1ce;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: 500ms;
+    cursor: pointer;
+}
+#REGISTER_BOTON_PREVIOUS2:hover{
+    background-color: #229ab6;
+}  
+#REGISTER_BOTON_NEXT2{
+    position: absolute;
+    top: 80%;
+    left: 53%;
+    width: 40%;
+    height: 50px;
+    border-color: transparent;
+    background-color: #2db1ce;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: 500ms;
+    cursor: pointer;
+}
+#REGISTER_BOTON_NEXT2:hover{
+    background-color: #229ab6;
+}
+
+
+#REGISTER_CUADRO3{
+    position: absolute;
+    top: 10%;
+    left: 39%;
+    background: radial-gradient(circle, transparent 30%, #003B49 70%);
+    background-color: #065063;
+    border-radius: 10px;
+    width: 390px; 
+    height: 80vh; 
+    transition: all 0.5s ease;
+}
+#REGISTER_IMAGEN_FINAL{
+    position: absolute;
+    top: 30%;
+    left: 57%;
+    height: 100px;
+
+}
+#REGISTER_LABEL_TITULO3{
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    font-size: 28 px;
+    color: white;
+    font-weight: bold;
+}
+#REGISTER_LABEL_PASS{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    font-size: 18px;
+    color: white;
+}
+#REGISTER_TEXT_PASS{
+    position: absolute;
+    top: 55%;
+    left: 10%;
+    width: 75%;
+    height: 40px;
+    font-size: 18px;
+    border-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    transition: 500ms;
+} 
+#REGISTER_TEXT_PASS:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 30px #2b80b9; /* Iluminación del borde al hacer clic */
+}
+#REGISTER_TEXT_CONPASS{
+    position: absolute;
+    top: 70%;
+    left: 10%;
+    width: 75%;
+    height: 40px;
+    font-size: 18px;
+    border-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    transition: 500ms;
+}
+#REGISTER_TEXT_CONPASS:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 30px #2b80b9; /* Iluminación del borde al hacer clic */
+}
+
+  
+#REGISTER_CUADRO1, #REGISTER_CUADRO2, #REGISTER_CUADRO3,#REGISTER_LABEL_IMAGEN_CAPTURADA,#REGISTER_BOTON_USAR_ESTA {
+    transition: opacity 0.5s ease-in-out;
+} 
+.oculto {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+  
