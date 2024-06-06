@@ -41,7 +41,7 @@ router.post('/register', async (req,res) => {
                 res.status(400).json({ success: false, message: 'Usuario ya Existe' });
             }else{
                 //INSERTAR A BASE
-                await pool.query('INSERT INTO usuarios(nombre, apellido, genero, correo, password, fecha_nacimiento) VALUES (?, ?, ?, ?, ?, ?)', [nombre, apellido, genero, correo, password, fecha_nacimiento]);               
+                await pool.query('INSERT INTO usuarios(nombre, apellido, genero, correo, password, fecha_nacimiento,estado_usuario) VALUES (?, ?, ?, ?, ?, ?,1)', [nombre, apellido, genero, correo, password, fecha_nacimiento]);               
                 res.json({ success: true, message: 'Usuario registrado correctamente!' });
             }
         }
@@ -51,5 +51,55 @@ router.post('/register', async (req,res) => {
     }
 });
 
+//INGRESO DE PELICULAS
+router.post('/ingresarpelicula', async (req,res) => {
+    try {
+        const {titulo,sinopsis,precio,director,estreno,duracion, genero, imagen} = req.body;   //OBTENCION DE PARAMETROS
+        if(!titulo | !sinopsis | !precio | !director | !estreno| !duracion |!genero|!imagen){  //VALIDACION DATOS COMPLETOS
+            res.status(400).json({ success: false, message: 'Datos incompletos' });
+        }else{
+            //VALIDACION EXISTE PELICULA
+            const [validacion] = await pool.query('SELECT * FROM peliculas WHERE titulo = ?', [titulo]);
+            if(validacion.length >0){       
+                res.status(400).json({ success: false, message: 'Pelicula ya Existe' });
+            }else{
+                //INSERTAR A BASE
+                await pool.query('INSERT INTO peliculas(titulo, sinopsis, precio_alquiler, director, year_estreno, duracion, genero, imagen) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [titulo, sinopsis, precio, director, estreno, duracion, genero, imagen]);               
+                res.json({ success: true, message: 'Pelicula Ingresada correctamente!' });
+            }
+        }
+    } catch (error) {
+        console.error('Error al Ingresar Pelicula:', error);
+        res.status(500).json({ success: false, message: 'Error al Ingresar pelicula' });
+    }
+});
+
+//INGRESO DE COMENTARIO
+router.post('/ingresarcomentario', async (req,res) => {
+    try {
+        const {correo,titulo,comentario} = req.body;   //OBTENCION DE PARAMETROS
+        if(!correo | !titulo | !comentario ){  //VALIDACION DATOS COMPLETOS
+            res.status(400).json({ success: false, message: 'Datos incompletos' });
+        }else{
+            //VALIDAR EXISTE USUARIO
+            const [validacion] = await pool.query('SELECT * FROM usuarios WHERE correo = ?', [correo]);
+            if(validacion.length <1){       
+                res.status(400).json({ success: false, message: 'Usuario no Existe' });
+                return
+            }
+            const [validacion2] = await pool.query('SELECT * FROM peliculas WHERE titulo = ?', [titulo]);
+            if(validacion2.length <1){       
+                res.status(400).json({ success: false, message: 'Pelicula no Existe' });
+                return
+            }
+            //INSERTAR A BASE
+            await pool.query('INSERT INTO comentarios(correo, titulo, comentario, estado_comentario) VALUES (?, ?, ?, 1)', [correo, titulo, comentario]);               
+            res.json({ success: true, message: 'Comentario Publicado!' });
+        }
+    } catch (error) {
+        console.error('Error al Publicar Comentario:', error);
+        res.status(500).json({ success: false, message: 'Error al Publicar Comentario' });
+    }
+});
 
 module.exports = router;
