@@ -15,13 +15,13 @@ export const postLogin = async ({ email, password }) => {
 }
 
 
-export const postRegister = async ({ username, fullname, email, password, image }) => {
+export const postRegister = async ({ username, lastname,gender, email, password }) => {
 	const response = await axiosInstance.post("/register", {
 		username,
-		fullname,
+		lastname,
+		gender,
 		email,
 		password,
-		image,
 	})
 	return response
 }

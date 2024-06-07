@@ -6,7 +6,7 @@ import { useAuthStore } from "../../store/auth"
 import { useNavigate } from "react-router-dom"
 
 const formData = {
-	username: "",
+	email: "",
 	password: "",
 }
 
@@ -19,34 +19,34 @@ function LoginCredentials() {
 		initialValues: formData,
 		validate: (values) => {
 			const errors = {}
-			if (!values.username) {
-				errors.username = "Este campo es obligatorio."
+			if (!values.email) {
+				errors.email = "Este campo es obligatorio."
 			}
 			if (!values.password) {
 				errors.password = "Este campo es obligatorio."
 			}
 			return errors
 		},
-		onSubmit: async (values) => {
+		onSubmit: async ({email,password}) => {
 			console.log(values)
-			setUser(values.username)
-			if(values.username === "admin" && values.password === "admin"){
+			setUser(email)
+			if(email === "admin" && password === "admin"){
 				navigate("/admin/home")
 				return
 			}
 			navigate("/home")
 			
 			// try {
-			// 	const res = await postLogin(values)
+			// 	const res = await postLogin({email,password})
 			// 	console.log(res)
 			// 	if (res.status === 200) {
 			// 		successMessage("Inicio de sesion exitoso.")
-			// 		setUser(values.username)
+			// 		setUser(email)
 			// 		navigate("/home")
 			// 		return
 			// 	} else {
 			// 		formik.setErrors({
-			// 			username: "Usuario o contraseña incorrectos.",
+			// 			email: "Usuario o contraseña incorrectos.",
 			// 			password: "Email o contraseña incorrectos.",
 			// 		})
 			// 	}
@@ -61,16 +61,16 @@ function LoginCredentials() {
 			<TextField
 				label='Usuario'
 				variant='outlined'
-				type='text'
+				type='email'
 				fullWidth
 				margin='normal'
 				autoComplete='off'
-				name='username'
-				value={formik.values.username}
+				name='email'
+				value={formik.values.email}
 				onChange={formik.handleChange}
-				error={!!formik.errors.username && formik.touched.username}
+				error={!!formik.errors.email && formik.touched.email}
 				helperText={
-					formik.errors.username && formik.touched.username ? formik.errors.username : ""
+					formik.errors.email && formik.touched.email ? formik.errors.email : ""
 				}
 			/>
 			<TextField
