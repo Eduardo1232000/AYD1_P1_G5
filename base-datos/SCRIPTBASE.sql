@@ -29,6 +29,7 @@ CREATE TABLE usuarios (
     correo           VARCHAR(50) NOT NULL,
     password         VARCHAR(25) NOT NULL,
     fecha_nacimiento DATE NOT NULL,
+    estado_usuario   INT NOT NULL,
     PRIMARY KEY (correo)
 );
 
@@ -38,4 +39,21 @@ ALTER TABLE alquileres
 
 ALTER TABLE alquileres
     ADD CONSTRAINT alquileres_usuarios_fk FOREIGN KEY (correo)
+        REFERENCES usuarios (correo);
+        
+CREATE TABLE comentarios (
+	id_comentario	   INT NOT NULL AUTO_INCREMENT,
+    correo             VARCHAR(50) NOT NULL,
+    titulo             VARCHAR(30) NOT NULL,
+    comentario         TEXT,
+    estado_comentario  INT NOT NULL,
+    PRIMARY KEY (id_comentario)
+);
+
+ALTER TABLE comentarios
+    ADD CONSTRAINT comentarios_peliculas_fk FOREIGN KEY (titulo)
+        REFERENCES peliculas (titulo);
+
+ALTER TABLE comentarios
+    ADD CONSTRAINT comentarios_usuarios_fk FOREIGN KEY (correo)
         REFERENCES usuarios (correo);

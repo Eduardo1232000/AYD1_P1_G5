@@ -23,7 +23,6 @@ const pool = mysql.createPool({
     connectionLimit: 10,
     queueLimit: 0
 });
-
 pool.getConnection()
     .then(connection => {
         console.log('Conexión a la base de datos establecida con éxito');
