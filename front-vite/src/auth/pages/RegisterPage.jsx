@@ -9,6 +9,7 @@ const formData = {
 	lastname: "",
 	email: "",
 	gender: "",
+	birthdate: "",
 	password: "",
 	passwordConfirm: "",
 }
@@ -43,13 +44,14 @@ function RegisterPage() {
 			}
 			return errors
 		},
-		onSubmit: async ({ username, lastname, email, gender, password }) => {
+		onSubmit: async ({ username, lastname, email, gender,birthdate, password }) => {
 			try {
 				await postRegister({
 					username,
 					lastname,
 					email,
 					gender,
+					birthdate,
 					password,
 				})
 
@@ -86,7 +88,7 @@ function RegisterPage() {
 
 			<form onSubmit={formik.handleSubmit}>
 				<TextField
-					label='Usuario'
+					label='Nombre'
 					variant='outlined'
 					fullWidth
 					size='small'
@@ -104,7 +106,7 @@ function RegisterPage() {
 					}
 				/>
 				<TextField
-					label='Nombre Completo'
+					label='Apellido'
 					variant='outlined'
 					type='text'
 					size='small'
@@ -155,6 +157,22 @@ function RegisterPage() {
 						formik.errors.gender && formik.touched.gender ? formik.errors.gender : ""
 					}
 				/>
+
+				<TextField
+					variant='outlined'
+					type='date'
+					fullWidth
+					size='small'
+					margin='normal'
+					name='birthdate'
+					value={formik.values.birthdate}
+					onChange={formik.handleChange}
+					error={!!formik.errors.birthdate && formik.touched.birthdate}
+					helperText={
+						formik.errors.birthdate && formik.touched.birthdate ? formik.errors.birthdate : ""
+					}
+				/>	
+				
 
 				<TextField
 					label='Contraseña'
