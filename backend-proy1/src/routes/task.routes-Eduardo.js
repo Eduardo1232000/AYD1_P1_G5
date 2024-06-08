@@ -10,15 +10,15 @@ router.get('/edu', (req,res) => { //SOLICITUD INICIAL (SIN PARAMETROS)
 //LOGIN
 router.post('/login', async(req,res) => {
     try {
-        const {correo,password} = req.body;   //OBTENCION DE PARAMETROS
-        if(!correo | !password){             //VALIDACION DATOS NECESARIOS
+        const {email,password} = req.body;   //OBTENCION DE PARAMETROS
+        if(!email | !password){             //VALIDACION DATOS NECESARIOS
             res.status(400).json({ success: false, message: 'Datos incompletos' });
         }else{
-            const [result] = await pool.query('SELECT * FROM usuarios WHERE correo = ? AND password = ?', [correo, password]);
+            const [result] = await pool.query('SELECT * FROM usuarios WHERE correo = ? AND password = ?', [email, password]);
             if(result.length == 1){ //SI HAY 1 COINCIDENCIA DEJA PASAR (SOLO DEBE TENER 1)
                 res.json({ success: true, message: 'Login Correcto' });
             }else{
-                res.json({ success: false, message: 'Datos incorrectos' });
+                res.status(400).json({ success: false, message: 'Datos incorrectos' });
             }
         }
     } catch (error) {
@@ -31,17 +31,17 @@ router.post('/login', async(req,res) => {
 //REGISTRO
 router.post('/register', async (req,res) => {
     try {
-        const {nombre,apellido,genero,correo,fecha_nacimiento,password} = req.body;   //OBTENCION DE PARAMETROS
-        if(!nombre | !apellido | !genero | !correo | !fecha_nacimiento| !password){  //VALIDACION DATOS COMPLETOS
+        const {username,lastname,gender,email,birthdate,password} = req.body;   //OBTENCION DE PARAMETROS
+        if(!username | !lastname | !gender | !email | !birthdate| !password){  //VALIDACION DATOS COMPLETOS
             res.status(400).json({ success: false, message: 'Datos incompletos' });
         }else{
             //VALIDACION EXISTE USUARIO
-            const [validacion] = await pool.query('SELECT * FROM usuarios WHERE correo = ?', [correo]);
+            const [validacion] = await pool.query('SELECT * FROM usuarios WHERE correo = ?', [email]);
             if(validacion.length >0){       
                 res.status(400).json({ success: false, message: 'Usuario ya Existe' });
             }else{
                 //INSERTAR A BASE
-                await pool.query('INSERT INTO usuarios(nombre, apellido, genero, correo, password, fecha_nacimiento,estado_usuario) VALUES (?, ?, ?, ?, ?, ?,1)', [nombre, apellido, genero, correo, password, fecha_nacimiento]);               
+                await pool.query('INSERT INTO usuarios(nombre, apellido, genero, correo, password, fecha_nacimiento,estado_usuario) VALUES (?, ?, ?, ?, ?, ?,1)', [username, lastname, gender, email, password, birthdate]);               
                 res.json({ success: true, message: 'Usuario registrado correctamente!' });
             }
         }
