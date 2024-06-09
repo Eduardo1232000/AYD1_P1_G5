@@ -4,6 +4,16 @@ const router = express.Router();
 
 const campos = ["titulo", "sinopsis", "precio_alquiler", "director", "year_estreno", "duracion", "genero", "imagen"]
 
+router.get("/peliculas", async (req, res) => {
+    try {
+        const result = await pool.query("select * from peliculas")
+        res.json({ message: "", data: {peliculas: result[0]} });
+    } catch (error) {
+        console.log(error)
+        res.status(404).json({message: "Error interno", data: {}})
+    }
+});
+
 router.put("/peliculas/:titulo", async (req, res) => {
     const vals = []
     let set_valores = ""
