@@ -27,4 +27,31 @@ export const postRegister = async ({ username, lastname,gender, email,birthdate,
 	return response
 }
 
+export const postAddMovie = async ({ titulo, sinopsis, precio, director, estreno, duracion, genero, imagen }) => {
+	const response = await axiosInstance.post("/ingresarpelicula", {
+		titulo,
+		sinopsis,
+		precio,
+		director,
+		estreno,
+		duracion,
+		genero,
+		imagen,
+	})
+	return response
+}
 
+export const getMovies = async () => {
+	const response = await axiosInstance.get("/peliculas")
+	return response
+}
+
+export const deleteMovie = async (titulo) => {
+	const response = await axiosInstance.delete(`/peliculas/${titulo}`)
+	return response
+}
+
+export const updateMovie = async (titulo, data) => {
+	const response = await axiosInstance.put(`/peliculas/${titulo}`, data)
+	return response
+}
