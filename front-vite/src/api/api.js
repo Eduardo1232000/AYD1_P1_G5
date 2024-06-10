@@ -55,3 +55,23 @@ export const updateMovie = async (titulo, data) => {
 	const response = await axiosInstance.put(`/peliculas/${titulo}`, data)
 	return response
 }
+
+
+/* hbmg981 endpoints para usuario */
+
+
+// Función para obtener el perfil del usuario
+export const getProfile = async (email) => {
+	const response = await axiosInstance.post("/perfil", { correo: email })
+	return response
+}
+
+// Función para actualizar el perfil del usuario
+export const updateProfile = async (profile) => {
+    const response = await axiosInstance.post("/actualizar-perfil", profile);
+    return response;
+}
+
+
+
+/** fin hbmg981 */

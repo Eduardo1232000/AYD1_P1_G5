@@ -9,12 +9,16 @@ import LayoutAdmin from "../admin/layout/LayoutAdmin"
 import AddMoviePage from "../admin/pages/AddMoviePage"
 import UpdateMoviePage from "../admin/pages/UpdateMoviePage"
 import MoviesContentPage from "../admin/pages/MoviesContentPage"
+import ProfileEdit from "../cinemania/pages/ProfileEdit"
 
 const Router = createBrowserRouter([
 	{
 		path: "/",
 		element: <LayoutCineMania />,
-		children: [{ path: "home", element: <HomePage /> }],
+		children: [
+			{ path: "home", element: <HomePage /> },
+			{ path: "profile-edit", element: <ProfileEdit /> }
+		],
 	},
 	{
 		path: "/admin",
