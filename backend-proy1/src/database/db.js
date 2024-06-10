@@ -15,7 +15,7 @@ configData.split('\n').forEach(line => {
 // Configuración de la conexión a la base de datos
 const pool = mysql.createPool({
     host: config.DB_HOST,
-    port: 3306,
+    port: 4545,
     user: config.DB_USER,
     password: config.DB_PASSWORD,
     database: config.DB_DATABASE,

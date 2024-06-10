@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseURL = "https://localhost:8080"
+const baseURL = "http://localhost:8080"
 
 const axiosInstance = axios.create({
 	baseURL,
@@ -15,12 +15,13 @@ export const postLogin = async ({ email, password }) => {
 }
 
 
-export const postRegister = async ({ username, lastname,gender, email, password }) => {
+export const postRegister = async ({ username, lastname,gender, email,birthdate, password }) => {
 	const response = await axiosInstance.post("/register", {
 		username,
 		lastname,
 		gender,
 		email,
+		birthdate,
 		password,
 	})
 	return response
