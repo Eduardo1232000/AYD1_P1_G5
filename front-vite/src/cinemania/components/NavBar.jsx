@@ -64,7 +64,7 @@ function NavBar() {
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}
-							to='/alquilar-pelicula'>
+							to='/devolver-pelicula'>
 							Devolver pelicula
 						</Button>
 						<Button
