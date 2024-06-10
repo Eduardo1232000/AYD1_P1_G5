@@ -78,5 +78,25 @@ export const getHistoricoAlquiler = async (correo) => {
     return response;
 };
 
+// Función para obtener las películas alquiladas por correo
+export const getPeliculasAlquiladasPorCorreo = async (correo) => {
+    const response = await axiosInstance.post("/peliculas-alquiladas", { correo });
+    return response;
+};
+
+export const verificarFechaDevolucion = async (correo, titulo) => {
+	const response = await axiosInstance.post("/verifica-fecha", { correo, titulo });
+	return response;
+};
+
+export const calcularPenalizacion = async (correo, titulo) => {
+	const response = await axiosInstance.post("/penalizacion", { correo, titulo });
+	return response;
+};
+
+export const devolverPelicula = async (correo, titulo) => {
+	const response = await axiosInstance.post("/devolver", { correo, titulo });
+	return response;
+};
 
 /** fin hbmg981 */

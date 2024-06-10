@@ -212,6 +212,7 @@ router.post('/historico-alquiler', async (req, res) => {
             a.fecha_alquiler,
             a.fecha_devolucion,
             p.precio_alquiler,
+            a.estado_alquiler,
             CASE
                 WHEN a.fecha_devolucion IS NOT NULL THEN
                     TIMESTAMPDIFF(HOUR, a.fecha_alquiler, a.fecha_devolucion)
@@ -226,6 +227,8 @@ router.post('/historico-alquiler', async (req, res) => {
                     0
             END AS penalizacion,
             CASE
+                WHEN a.estado_alquiler = 1 THEN
+                    'La película no ha sido devuelta.'
                 WHEN (a.fecha_devolucion IS NOT NULL AND TIMESTAMPDIFF(HOUR, a.fecha_alquiler, a.fecha_devolucion) > 48) OR 
                     (a.fecha_devolucion IS NULL AND TIMESTAMPDIFF(HOUR, a.fecha_alquiler, NOW()) > 48) THEN
                     CONCAT('La película se devolvió con retraso de ', TIMESTAMPDIFF(HOUR, a.fecha_alquiler, COALESCE(a.fecha_devolucion, NOW())) - 48, ' horas. Penalización extra: Q', FLOOR((TIMESTAMPDIFF(HOUR, a.fecha_alquiler, COALESCE(a.fecha_devolucion, NOW())) - 48) / 24) * 5, '.00')
@@ -273,5 +276,44 @@ router.post('/historico-alquiler', async (req, res) => {
         });
     }
 });
+
+
+
+// Devuelve la información de las películas alquiladas por un correo específico
+router.post('/peliculas-alquiladas', async (req, res) => {
+    const { correo } = req.body; // Obtén el correo desde el cuerpo de la solicitud
+
+    // Consulta SQL para obtener las películas alquiladas por el correo específico
+    const query = `
+        SELECT peliculas.imagen AS imagen_url, peliculas.titulo
+        FROM alquileres
+        JOIN peliculas ON alquileres.titulo = peliculas.titulo
+        WHERE alquileres.correo = ? AND alquileres.estado_alquiler = 1
+    `;
+
+    try {
+        const [results] = await pool.execute(query, [correo]); // Ejecutar la consulta
+
+        if (results.length > 0) {
+            res.json({
+                success: true,
+                message: 'Películas alquiladas encontradas.',
+                peliculas_alquiladas: results
+            });
+        } else {
+            res.json({
+                success: false,
+                message: 'No se encontraron películas alquiladas para el correo proporcionado.'
+            });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'Error al obtener las películas alquiladas.'
+        });
+    }
+});
+
 
 module.exports = router;
