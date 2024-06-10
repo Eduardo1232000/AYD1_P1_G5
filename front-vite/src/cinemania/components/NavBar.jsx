@@ -76,7 +76,7 @@ function NavBar() {
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}
-							to='/alquilar-pelicula'>
+							to='/profile-edit'>
 							Editar Perfil
 						</Button>
 

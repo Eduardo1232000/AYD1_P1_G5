@@ -160,6 +160,46 @@ router.post('/perfil', async (req, res) => {
     }
 });
 
+// Devuelve true si se actualizó correctamente y un mensaje.
+router.post('/actualizar-perfil', async (req, res) => {
+    const { nombre, apellido, genero, correo, password, fecha_nacimiento } = req.body; // Obtén los datos del usuario desde el cuerpo de la solicitud
+
+    // Consulta SQL para actualizar los datos del usuario
+    const query = `
+        UPDATE usuarios
+        SET nombre = ?,
+            apellido = ?,
+            genero = ?,
+            password = ?,
+            fecha_nacimiento = ?
+        WHERE correo = ?;
+    `;
+
+    try {
+        const [result] = await pool.execute(query, [nombre, apellido, genero, password, fecha_nacimiento, correo]);
+
+        if (result.affectedRows > 0) {
+            res.json({
+                success: true,
+                message: 'Datos del usuario actualizados exitosamente.'
+            });
+        } else {
+            res.json({
+                success: false,
+                message: 'No se encontró un usuario con el correo proporcionado.'
+            });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'Error al realizar la actualización de los datos del usuario.'
+        });
+    }
+});
+
+
+
 // OBTENER HISTORICO DE ALQUILER POR CORREO lista de datos.
 router.post('/historico-alquiler', async (req, res) => {
     const { correo } = req.body; // Obtén el correo desde el cuerpo de la solicitud
