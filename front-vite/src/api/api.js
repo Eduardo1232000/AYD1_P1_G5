@@ -72,6 +72,11 @@ export const updateProfile = async (profile) => {
     return response;
 }
 
+// Función para obtener el historial de alquileres del usuario
+export const getHistoricoAlquiler = async (correo) => {
+    const response = await axiosInstance.post("/historico-alquiler", { correo });
+    return response;
+};
 
 
 /** fin hbmg981 */
