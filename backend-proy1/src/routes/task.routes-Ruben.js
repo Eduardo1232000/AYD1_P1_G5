@@ -57,4 +57,19 @@ router.delete("/peliculas/:titulo", async (req, res) => {
     }
 });
 
+router.delete("/usuarios/:correo", async (req, res) => {
+    try {
+        const result = await pool.query(`delete from usuarios where correo=?;`, [req.params.correo])
+        console.log(result)
+        if (result[0].affectedRows > 0) {
+            res.json({ message: "Registro eliminado", data: {titulo: req.params.titulo} });
+            return
+        }
+        res.status(404).json({message: "No existe el registro", data: {}})
+    } catch (error) {
+        console.log(error)
+        res.status(404).json({message: "Error interno", data: {}})
+    }
+});
+
 module.exports = router;
