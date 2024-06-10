@@ -1,6 +1,6 @@
 import { Box, Button, TextField } from "@mui/material"
-// import { errorMessage, successMessage } from "../../utils/messageStore"
-// import { postLogin } from "../../api"
+import { errorMessage, successMessage } from "../../utils/messageStore"
+import { postLogin } from "../../api"
 import { useFormik } from "formik"
 import { useAuthStore } from "../../store/auth"
 import { useNavigate } from "react-router-dom"
@@ -28,32 +28,30 @@ function LoginCredentials() {
 			return errors
 		},
 		onSubmit: async ({email,password}) => {
-			console.log(values)
 			setUser(email)
 			if(email === "admin" && password === "admin"){
 				navigate("/admin/home")
 				return
 			}
-			navigate("/home")
-			
-			// try {
-			// 	const res = await postLogin({email,password})
-			// 	console.log(res)
-			// 	if (res.status === 200) {
-			// 		successMessage("Inicio de sesion exitoso.")
-			// 		setUser(email)
-			// 		navigate("/home")
-			// 		return
-			// 	} else {
-			// 		formik.setErrors({
-			// 			email: "Usuario o contraseña incorrectos.",
-			// 			password: "Email o contraseña incorrectos.",
-			// 		})
-			// 	}
-			// } catch (error) {
-			// 	console.error(error)
-			// 	errorMessage("Error al iniciar sesion.")
-			// }
+						
+			 try {
+			 	const res = await postLogin({email,password})
+			 	console.log(res)
+			 	if (res.status === 200) {
+			 		successMessage("Inicio de sesion exitoso.")
+			 		setUser(email)
+			 		navigate("/home")
+			 		return
+			 	} else {
+			 		formik.setErrors({
+			 			email: "Usuario o contraseña incorrectos.",
+			 			password: "Email o contraseña incorrectos.",
+			 		})
+			 	}
+			 } catch (error) {
+			 	console.error(error)
+			 	errorMessage("Error al iniciar sesion.")
+			 }
 		},
 	})
 	return (
@@ -61,7 +59,7 @@ function LoginCredentials() {
 			<TextField
 				label='Usuario'
 				variant='outlined'
-				type='email'
+				type='text'
 				fullWidth
 				margin='normal'
 				autoComplete='off'
