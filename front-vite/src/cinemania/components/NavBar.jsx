@@ -70,8 +70,8 @@ function NavBar() {
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}
-							to='/alquilar-pelicula'>
-							Historial Alquiladas
+							to='/historico-alquiler'>
+							Historial Alquiler
 						</Button>
 						<Button
 							sx={{ color: "#fff" }}

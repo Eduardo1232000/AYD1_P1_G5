@@ -10,6 +10,7 @@ import AddMoviePage from "../admin/pages/AddMoviePage"
 import UpdateMoviePage from "../admin/pages/UpdateMoviePage"
 import MoviesContentPage from "../admin/pages/MoviesContentPage"
 import ProfileEdit from "../cinemania/pages/ProfileEdit"
+import HistoricoAlquiler from "../cinemania/pages/HistoricoAlquiler"
 
 const Router = createBrowserRouter([
 	{
@@ -17,7 +18,8 @@ const Router = createBrowserRouter([
 		element: <LayoutCineMania />,
 		children: [
 			{ path: "home", element: <HomePage /> },
-			{ path: "profile-edit", element: <ProfileEdit /> }
+			{ path: "profile-edit", element: <ProfileEdit /> },
+			{ path: "historico-alquiler", element: <HistoricoAlquiler /> }
 		],
 	},
 	{
