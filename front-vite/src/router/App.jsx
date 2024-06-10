@@ -6,6 +6,9 @@ import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
 import { HomePage } from "../cinemania/pages"
 import AdminHomePage from "../admin/pages/AdminHomePage"
 import LayoutAdmin from "../admin/layout/LayoutAdmin"
+import AddMoviePage from "../admin/pages/AddMoviePage"
+import UpdateMoviePage from "../admin/pages/UpdateMoviePage"
+import MoviesContentPage from "../admin/pages/MoviesContentPage"
 
 const Router = createBrowserRouter([
 	{
@@ -16,7 +19,12 @@ const Router = createBrowserRouter([
 	{
 		path: "/admin",
 		element: <LayoutAdmin />,
-		children: [{ path: "home", element: <AdminHomePage /> }],
+		children: [
+			{ path: "home", element: <AdminHomePage /> },
+			{ path: "pelicula", element: <AddMoviePage /> },
+			{ path: "pelicula-actualizar", element: <UpdateMoviePage /> },
+			{ path: "contenido", element: <MoviesContentPage /> },
+		],
 	},
 	{
 		path: "/auth",
