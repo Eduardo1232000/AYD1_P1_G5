@@ -18,7 +18,20 @@
 <br><br>
 
 ---
+# DIAGRAMA ENTIDAD RELACION
+![Modelo Entidad Relacion](./assets/ModeloEntidadRelacion.png)
 
+# DIAGRAMA DE CLASES
+![Modelo de Clases](./assets/Diagrama%20de%20clase.jpg)
+
+
+# DIAGRAMA DE COMPONENTES
+![Modelo de Componentes](./assets/componentes.jpg)
+
+# DIAGRAMA DE DESPLIEGUE
+![Modelo de Despliegue](./assets/despliegue.jpg)
+
+# MANUAL TECNICO
 # Frontend
 Para el frontend se utilizo la React + Vite <br><br>
 Vite es un paquete de JS el cual toma el codigo React JSX y lo transforma en archivos HTML, CSS y JS sin formato el cual pueden ejecutar la mayoria de navegadores. <br><br>
@@ -91,3 +104,35 @@ Estas funciones se aplican a cada entidad de la base de datos.
 
 # Base de datos
 La base de datos que se utilizo en el proyecto fue MySQL debido a que es una base de datos facil de utilizar. Aqui se almacena toda la informacion de los usuarios, peliculas, comentarios y alquileres. 
+<br><br><br><br>
+
+# LINK HERRAMIENTA DE GESTION DE PROCESOS PARA TABLERO KANBAN
+### https://trello.com/b/44XOUR8A/ayd1p1g5
+
+<br>
+
+# CAPTURAS DEL TABLERO KANBAN
+### Inicio Sprint
+![Kanban Inicio 1](./assets/Kanban%20Inicio.jpg)
+![Kanban Inicio 2](./assets/Kanban%20Inicio2.jpg)
+### Durante el sprint
+![Kanban Inicio 1](./assets/Kanban%20Medio.jpg)
+
+### Finalizacion del sprint
+
+<br>
+
+# LINK GRABACIONES REALIZADAS
+
+### Sprint Planning: https://www.youtube.com/watch?si=rF1inIjX6EEvZpTi&v=VLenI-e6YtM&feature=youtu.be
+
+
+### Daily Scrum  No.1: https://www.youtube.com/watch?feature=shared&v=dzoR2Kc7Agw
+
+
+### Daily Scrum  No.2:
+
+### Daily Scrum  No.3: https://www.youtube.com/watch?v=cvUX52Fyqj4
+
+
+### Sprint Retrospective::
