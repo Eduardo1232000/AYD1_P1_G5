@@ -17,6 +17,13 @@ function AdminHomePage() {
 				sx={{ fontWeight: "bold", my: 4 }}>
 				Modulo de administrador
 			</Typography>
+			<Typography
+				variant='h6'
+				align='center'
+				color='text.secondary'
+				sx={{ fontWeight: "bold" }}>
+				Esta es la pagina de inicio del modulo de administrador donde podras gestionar el contenido de la aplicacion.
+			</Typography>
 		</Box>
 	)
 }

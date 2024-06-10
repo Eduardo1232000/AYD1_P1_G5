@@ -64,19 +64,19 @@ function NavBar() {
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}
-							to='/alquilar-pelicula'>
+							to='/devolver-pelicula'>
 							Devolver pelicula
 						</Button>
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}
-							to='/alquilar-pelicula'>
-							Historial Alquiladas
+							to='/historico-alquiler'>
+							Historial Alquiler
 						</Button>
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}
-							to='/alquilar-pelicula'>
+							to='/profile-edit'>
 							Editar Perfil
 						</Button>
 

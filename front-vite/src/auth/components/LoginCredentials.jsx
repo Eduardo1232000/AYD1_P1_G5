@@ -27,31 +27,31 @@ function LoginCredentials() {
 			}
 			return errors
 		},
-		onSubmit: async ({email,password}) => {
+		onSubmit: async ({ email, password }) => {
 			setUser(email)
-			if(email === "admin" && password === "admin"){
+			if (email === "admin" && password === "admin") {
 				navigate("/admin/home")
 				return
 			}
-						
-			 try {
-			 	const res = await postLogin({email,password})
-			 	console.log(res)
-			 	if (res.status === 200) {
-			 		successMessage("Inicio de sesion exitoso.")
-			 		setUser(email)
-			 		navigate("/home")
-			 		return
-			 	} else {
-			 		formik.setErrors({
-			 			email: "Usuario o contraseña incorrectos.",
-			 			password: "Email o contraseña incorrectos.",
-			 		})
-			 	}
-			 } catch (error) {
-			 	console.error(error)
-			 	errorMessage("Error al iniciar sesion.")
-			 }
+
+			try {
+				const res = await postLogin({ email, password })
+				console.log(res)
+				if (res.status === 200) {
+					successMessage("Inicio de sesion exitoso.")
+					setUser(email)
+					navigate("/home")
+					return
+				} else {
+					formik.setErrors({
+						email: "Usuario o contraseña incorrectos.",
+						password: "Email o contraseña incorrectos.",
+					})
+				}
+			} catch (error) {
+				console.error(error)
+				errorMessage("Error al iniciar sesion.")
+			}
 		},
 	})
 	return (
@@ -67,9 +67,7 @@ function LoginCredentials() {
 				value={formik.values.email}
 				onChange={formik.handleChange}
 				error={!!formik.errors.email && formik.touched.email}
-				helperText={
-					formik.errors.email && formik.touched.email ? formik.errors.email : ""
-				}
+				helperText={formik.errors.email && formik.touched.email ? formik.errors.email : ""}
 			/>
 			<TextField
 				label='Contraseña'
