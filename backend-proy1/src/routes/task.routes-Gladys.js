@@ -40,28 +40,29 @@ router.get('/peliculas', async (req, res) => {
     }
 });
 
-// ELIMINACIÓN DE COMENTARIO
+// ELIMINACIÓN DE COMENTARIO POR ID
 router.post('/eliminarcomentario', async (req, res) => {
     try {
-        const { id_comentario, correo, titulo } = req.body; // OBTENCIÓN DE PARÁMETROS
-        if (!id_comentario || !correo || !titulo) { // VALIDACIÓN DE DATOS COMPLETOS
-            res.status(400).json({ success: false, message: 'Datos incompletos' });
+        const { id_comentario } = req.body; // OBTENCIÓN DEL ID DEL COMENTARIO
+        if (!id_comentario) { // VALIDACIÓN DE DATOS
+            res.status(400).json({ success: false, message: 'ID de comentario no proporcionado' });
             return;
         }
         // VALIDAR EXISTENCIA DE COMENTARIO
-        const [validacion] = await pool.query('SELECT * FROM comentarios WHERE id_comentario = ? AND correo = ? AND titulo = ?', [id_comentario, correo, titulo]);
+        const [validacion] = await pool.query('SELECT * FROM comentarios WHERE id_comentario = ?', [id_comentario]);
         if (validacion.length < 1) {
-            res.status(400).json({ success: false, message: 'Comentario no Existe' });
+            res.status(400).json({ success: false, message: 'Comentario no existe' });
             return;
         }
-        // ELIMINAR COMENTARIO
-        await pool.query('update comentarios set estado_comentario = 0 WHERE id_comentario = ?', [id_comentario]);
+        // ACTUALIZAR ESTADO DEL COMENTARIO A 0 (INACTIVO)
+        await pool.query('UPDATE comentarios SET estado_comentario = 0 WHERE id_comentario = ?', [id_comentario]);
         res.json({ success: true, message: 'Comentario eliminado correctamente' });
     } catch (error) {
-        console.error('Error al Eliminar Comentario:', error);
-        res.status(500).json({ success: false, message: 'Error al Eliminar Comentario' });
+        console.error('Error al eliminar comentario:', error);
+        res.status(500).json({ success: false, message: 'Error al eliminar comentario' });
     }
 });
+
 
 // OBTENER COMENTARIOS CON estado_comentario = 1 PARA UN TÍTULO ESPECÍFICO
 router.get('/comentariosactivos/:titulo', async (req, res) => {
@@ -71,14 +72,25 @@ router.get('/comentariosactivos/:titulo', async (req, res) => {
             res.status(400).json({ success: false, message: 'Título no proporcionado' });
             return;
         }
-        const comentariosActivos = await pool.query('SELECT * FROM comentarios WHERE estado_comentario = 1 AND titulo = ?', [titulo]);
-        const comentarios = comentariosActivos
-        res.json({ success: true, comentarios });
+        // Consulta SQL para obtener comentarios activos para el título específico
+        const query = `
+            SELECT *
+            FROM comentarios
+            WHERE estado_comentario = 1 AND titulo = ?;
+        `;
+        const [comentariosActivos] = await pool.execute(query, [titulo]);
+        if (comentariosActivos.length > 0) {
+            res.json({ success: true, comentarios: comentariosActivos });
+        } else {
+            res.json({ success: false, message: 'No se encontraron comentarios activos para este título.' });
+        }
     } catch (error) {
         console.error('Error al Obtener Comentarios Activos:', error);
         res.status(500).json({ success: false, message: 'Error al Obtener Comentarios Activos' });
     }
 });
+
+
 
 
 // ALQUILER DE PELÍCULAS
