@@ -56,6 +56,15 @@ export const updateMovie = async (titulo, data) => {
 	return response
 }
 
+export const getUsers = async () => {
+	const response = await axiosInstance.get("/usuarios")
+	return response
+}
+
+export const deleteUser = async (correo) => {
+	const response = await axiosInstance.delete(`/usuarios/${correo}`)
+	return response
+}
 
 /* hbmg981 endpoints para usuario */
 
