@@ -1,6 +1,6 @@
 import { LogoutOutlined } from "@mui/icons-material"
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
-import { AppBar, Box, Button, Grid, IconButton, Toolbar, Typography } from "@mui/material"
+import { AppBar, Box, Button, Grid, IconButton, Toolbar, Typography, Divider } from "@mui/material"
 import { Link, useNavigate } from "react-router-dom"
 
 function NavBar() {
@@ -34,8 +34,8 @@ function NavBar() {
 					container
 					justifyContent='space-between'
 					alignItems='center'>
-					<Box sx={{ display: { xs: "none", sm: "block" } }}
-						 gap={2}
+					<Box sx={{ display: { xs: "none", sm: "flex" } }}
+						
 					>
 						<Button
 							sx={{ color: "#fff" }}
@@ -43,36 +43,36 @@ function NavBar() {
 							to='/home'>
 							Inicio
 						</Button>
-						<Button
-							sx={{ color: "#fff" }}
-							component={Link}
-							to='/registrar-paciente'>
-							Peliculas
-						</Button>
-						<Button
-							sx={{ color: "#fff" }}
-							component={Link}
-							to='/comentar-contenido'>
-							Comentar Contenido
-						</Button>
+						<Divider orientation='vertical' flexItem
+							sx={{ backgroundColor: "#0f3c5a", mx: 1 }}
+						/>
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}
 							to='/alquilar-pelicula'>
 							Alquilar pelicula
 						</Button>
+						<Divider orientation='vertical' flexItem
+							sx={{ backgroundColor: "#0f3c5a", mx: 1 }}
+						/>
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}
 							to='/devolver-pelicula'>
 							Devolver pelicula
 						</Button>
+						<Divider orientation='vertical' flexItem
+							sx={{ backgroundColor: "#0f3c5a", mx: 1 }}
+						/>
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}
 							to='/historico-alquiler'>
 							Historial Alquiler
 						</Button>
+						<Divider orientation='vertical' flexItem
+							sx={{ backgroundColor:  "#0f3c5a", mx: 1 }}
+						/>
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}

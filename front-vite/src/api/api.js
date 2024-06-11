@@ -112,13 +112,49 @@ export const devolverPelicula = async (correo, titulo) => {
 
 /* Endpoits usuarios*/
 export const getPeliculas = async () => {
+	const response = await axiosInstance.get("/peliculas")
+	return response
+}
+
+export const getPeliculas2 = async () => {
 	const response = await axiosInstance.get("/verPeliculas")
 	return response
 }
+
 export const alquilarPelicula = async (correo, titulo) => {
 	const response = await axiosInstance.post("/alquilarpelicula", { correo, titulo });
 	return response;
 };
 
+export const getComentariosActivos = async (titulo) => {
+    try {
+        const response = await axiosInstance.get(`/comentariosactivos/${titulo}`);
+        return response;
+    } catch (error) {
+        throw new Error('Error al obtener comentarios activos:', error);
+    }
+};
+
+export const deleteComentario = async (id_comentario) => {
+    try {
+        const response = await axiosInstance.post("/eliminarcomentario", { id_comentario });
+        return response;
+    } catch (error) {
+        throw new Error('Error al eliminar comentario:', error);
+    }
+};
+
+export const postComentario = async ({ correo, titulo, comentario }) => {
+    try {
+        const response = await axiosInstance.post("/ingresarcomentario", {
+            correo,
+            titulo,
+            comentario
+        });
+        return response;
+    } catch (error) {
+        throw new Error('Error al ingresar comentario:', error);
+    }
+};
 
 /* FIN Endpoits usuarios*/
