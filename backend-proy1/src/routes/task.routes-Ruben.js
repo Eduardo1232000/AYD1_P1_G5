@@ -62,7 +62,7 @@ router.delete("/usuarios/:correo", async (req, res) => {
         const result = await pool.query(`delete from usuarios where correo=?;`, [req.params.correo])
         console.log(result)
         if (result[0].affectedRows > 0) {
-            res.json({ message: "Registro eliminado", data: {titulo: req.params.titulo} });
+            res.json({ message: "Registro eliminado", data: {titulo: req.params.correo} });
             return
         }
         res.status(404).json({message: "No existe el registro", data: {}})
@@ -71,5 +71,16 @@ router.delete("/usuarios/:correo", async (req, res) => {
         res.status(404).json({message: "Error interno", data: {}})
     }
 });
+
+router.get("/usuarios", async (req, res) => {
+    try {
+        const result = await pool.query("select * from usuarios")
+        res.json({ message: "", data: {usuarios: result[0]} });
+    } catch (error) {
+        console.log(error)
+        res.status(404).json({message: "Error interno", data: {}})
+    }
+});
+
 
 module.exports = router;
