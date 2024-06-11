@@ -9,10 +9,9 @@ router.get('/gla', (req,res) => { //SOLICITUD INICIAL (SIN PARAMETROS)
     res.json({ message: 'Servidor en puerto 8080 por parte de Gladys' });
 });
 
-// Obtener todas las películas
-router.get('/peliculas', async (req, res) => {
+router.get('/verPeliculas', async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM peliculas');
+        const [rows] = await pool.query('SELECT * FROM peliculas p LEFT JOIN alquileres a ON p.titulo = a.titulo WHERE a.estado_alquiler = 0');
         res.json({ success: true, data: rows });
     } catch (error) {
         console.error('Error al obtener películas:', error);
@@ -67,23 +66,6 @@ router.post('/alquilarpelicula', async (req, res) => {
         const { correo, titulo } = req.body; // OBTENCIÓN DE PARÁMETROS
         if (!correo || !titulo) { // VALIDACIÓN DE DATOS COMPLETOS
             res.status(400).json({ success: false, message: 'Datos incompletos' });
-            return;
-        }
-        // VERIFICAR EXISTENCIA DE USUARIO Y PELÍCULA
-        const [usuarioExistente] = await pool.query('SELECT * FROM usuarios WHERE correo = ?', [correo]);
-        if (usuarioExistente.length === 0) {
-            res.status(400).json({ success: false, message: 'Usuario no Existe' });
-            return;
-        }
-        const [peliculaExistente] = await pool.query('SELECT * FROM peliculas WHERE titulo = ?', [titulo]);
-        if (peliculaExistente.length === 0) {
-            res.status(400).json({ success: false, message: 'Película no Existe' });
-            return;
-        }
-        // VERIFICAR SI EL USUARIO YA ALQUILÓ LA PELÍCULA
-        const [alquilerExistente] = await pool.query('SELECT * FROM alquileres WHERE correo = ? AND titulo = ?', [correo, titulo]);
-        if (alquilerExistente.length > 0) {
-            res.status(400).json({ success: false, message: 'Ya tienes esta película alquilada' });
             return;
         }
 

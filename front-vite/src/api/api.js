@@ -109,3 +109,16 @@ export const devolverPelicula = async (correo, titulo) => {
 };
 
 /** fin hbmg981 */
+
+/* Endpoits usuarios*/
+export const getPeliculas = async () => {
+	const response = await axiosInstance.get("/verPeliculas")
+	return response
+}
+export const alquilarPelicula = async (correo, titulo) => {
+	const response = await axiosInstance.post("/alquilarpelicula", { correo, titulo });
+	return response;
+};
+
+
+/* FIN Endpoits usuarios*/
