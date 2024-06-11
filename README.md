@@ -130,7 +130,7 @@ La base de datos que se utilizo en el proyecto fue MySQL debido a que es una bas
 ### Daily Scrum  No.1: https://www.youtube.com/watch?feature=shared&v=dzoR2Kc7Agw
 
 
-### Daily Scrum  No.2:
+### Daily Scrum  No.2: https://youtu.be/pc0_HK1fiXY
 
 ### Daily Scrum  No.3: https://www.youtube.com/watch?v=cvUX52Fyqj4
 
