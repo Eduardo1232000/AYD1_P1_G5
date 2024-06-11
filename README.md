@@ -135,4 +135,4 @@ La base de datos que se utilizo en el proyecto fue MySQL debido a que es una bas
 ### Daily Scrum  No.3: https://www.youtube.com/watch?v=cvUX52Fyqj4
 
 
-### Sprint Retrospective::
+### Sprint Retrospective: https://www.youtube.com/watch?v=st6mD8cNN_E
