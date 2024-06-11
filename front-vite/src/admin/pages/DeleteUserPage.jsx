@@ -54,8 +54,10 @@ function DeleteUserPage() {
 	const handleLoadUsers = async () => {
 		try {
 			const { data } = await getUsers()
-			setUsers(data.data)
+			console.log(data.data.usuarios)
+			setUsers(data.data.usuarios)
 		} catch (error) {
+			setUsers([])
 			console.error(error)
 		}
 	}
