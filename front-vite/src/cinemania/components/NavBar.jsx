@@ -35,7 +35,7 @@ function NavBar() {
 					justifyContent='space-between'
 					alignItems='center'>
 					<Box sx={{ display: { xs: "none", sm: "block" } }}
-					gap={2}
+						 gap={2}
 					>
 						<Button
 							sx={{ color: "#fff" }}
