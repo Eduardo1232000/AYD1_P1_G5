@@ -112,9 +112,15 @@ export const devolverPelicula = async (correo, titulo) => {
 
 /* Endpoits usuarios*/
 export const getPeliculas = async () => {
+	const response = await axiosInstance.get("/peliculas")
+	return response
+}
+
+export const getPeliculas2 = async () => {
 	const response = await axiosInstance.get("/verPeliculas")
 	return response
 }
+
 export const alquilarPelicula = async (correo, titulo) => {
 	const response = await axiosInstance.post("/alquilarpelicula", { correo, titulo });
 	return response;

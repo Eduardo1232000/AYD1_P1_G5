@@ -11,7 +11,28 @@ router.get('/gla', (req,res) => { //SOLICITUD INICIAL (SIN PARAMETROS)
 
 router.get('/verPeliculas', async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM peliculas p LEFT JOIN alquileres a ON p.titulo = a.titulo WHERE a.estado_alquiler = 0');
+        const [rows] = await pool.query(`
+            SELECT *
+            FROM peliculas p
+            WHERE NOT EXISTS (
+                SELECT 1
+                FROM alquileres a
+                WHERE p.titulo = a.titulo AND a.estado_alquiler = 1
+            )
+        `);
+        res.json({ success: true, data: rows });
+    } catch (error) {
+        console.error('Error al obtener películas:', error);
+        res.status(500).json({ success: false, message: 'Error al obtener películas' });
+    }
+});
+
+
+
+// Obtener todas las películas
+router.get('/peliculas', async (req, res) => {
+    try {
+        const [rows] = await pool.query('SELECT * FROM peliculas');
         res.json({ success: true, data: rows });
     } catch (error) {
         console.error('Error al obtener películas:', error);

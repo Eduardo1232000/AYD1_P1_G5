@@ -46,13 +46,13 @@ function NavBar() {
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}
-							to='/registrar-paciente'>
+							to='/home'>
 							Peliculas
 						</Button>
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}
-							to='/comentar-contenido'>
+							to='/home'>
 							Comentar Contenido
 						</Button>
 						<Button
