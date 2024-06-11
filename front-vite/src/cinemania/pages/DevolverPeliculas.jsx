@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getPeliculasAlquiladasPorCorreo, devolverPelicula, verificarFechaDevolucion, calcularPenalizacion } from '../../api'; // Importa las funciones necesarias
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Typography } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Typography, Card, CardContent } from '@mui/material';
 import { useAuthStore } from '../../store/auth'; // Importa el hook useAuthStore
 import { successMessage, errorMessage } from '../../utils/messageStore'; // Importa las funciones de mensaje
 
@@ -96,48 +96,66 @@ function DevolverPeliculas() {
 
     return (
         <Grid container spacing={2} justifyContent="center">
-            {mensajeSinPeliculas ? (
-                <Typography variant="h5" align="center" style={{ marginTop: 30 }}>
-                    {mensajeSinPeliculas}
-                </Typography>
+             <Typography
+                variant='h4'
+                align='center'
+                color='text.primary'
+                gutterBottom
+                sx={{ fontWeight: "bold", my: 4 }}>
+                Películas Alquiladas
+            </Typography>
+            <Grid container spacing={2} justifyContent="center">
 
-            ) : (
-                peliculas.map((pelicula, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={index}>
-                        <Grid container spacing={2} direction="column" alignItems="center">
-                            <Grid item>
-                                <img src={pelicula.imagen_url} alt={pelicula.titulo} style={{ maxWidth: '100%', maxHeight: '200px' }} />
-                            </Grid>
-                            <Grid item>
-                                <Typography variant="h6" align="center">
-                                    {pelicula.titulo}
-                                </Typography>
-                            </Grid>
-                            <Grid item>
-                                <Button variant="contained" color="primary" onClick={() => handleDevolver(pelicula.titulo)}>
-                                    Devolver
-                                </Button>
-                            </Grid>
+                {mensajeSinPeliculas ? (
+                    <Typography variant="h5" align="center" style={{ marginTop: 30 }}>
+                        {mensajeSinPeliculas}
+                    </Typography>
+
+
+                ) : (
+                    peliculas.map((pelicula, index) => (
+                        <Grid item xs={12} sm={2} md={3} key={index}>
+                            <div style={{ margin: '8px' }}>
+                                <Card>
+                                    <CardContent style={{ padding: '20px' }}>
+                                        <Grid container spacing={2} direction="column" alignItems="center">
+                                            <Grid item>
+                                                <img src={pelicula.imagen_url} alt={pelicula.titulo} style={{ maxWidth: '90%', maxHeight: '250px' }} />
+                                            </Grid>
+                                            <Grid item>
+                                                <Typography variant="h6" align="center">
+                                                    {pelicula.titulo}
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item>
+                                                <Button variant="contained" color="primary" onClick={() => handleDevolver(pelicula.titulo)}>
+                                                    Devolver
+                                                </Button>
+                                            </Grid>
+                                        </Grid>
+                                    </CardContent>
+                                </Card>
+                            </div>
                         </Grid>
-                    </Grid>
-                ))
-            )}
-            <Dialog open={openDialog} onClose={() => handleCloseDialog(false)}>
-                <DialogTitle>Confirmación</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        {mensajeDialog}
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => handleCloseDialog(false)} color="primary">
-                        Cancelar
-                    </Button>
-                    <Button onClick={() => handleCloseDialog(true)} color="primary" autoFocus>
-                        Aceptar
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                    ))
+                )}
+                <Dialog open={openDialog} onClose={() => handleCloseDialog(false)}>
+                    <DialogTitle>Confirmación</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            {mensajeDialog}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => handleCloseDialog(false)} color="primary">
+                            Cancelar
+                        </Button>
+                        <Button onClick={() => handleCloseDialog(true)} color="primary" autoFocus>
+                            Aceptar
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </Grid>
         </Grid>
     );
 }

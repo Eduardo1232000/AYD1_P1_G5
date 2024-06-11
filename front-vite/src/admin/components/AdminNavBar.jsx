@@ -48,7 +48,7 @@ function AdminNavBar() {
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}
-							to='/eliminar-usuarios'>
+							to='/admin/usuarios'>
 							Eliminacion Usuarios
 						</Button>
 					</Box>

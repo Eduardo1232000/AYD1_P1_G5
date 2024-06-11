@@ -12,6 +12,8 @@ import MoviesContentPage from "../admin/pages/MoviesContentPage"
 import ProfileEdit from "../cinemania/pages/ProfileEdit"
 import HistoricoAlquiler from "../cinemania/pages/HistoricoAlquiler"
 import DevolverPeliculas from "../cinemania/pages/DevolverPeliculas"
+import DeleteUserPage from "../admin/pages/DeleteUserPage"
+import AlquilarPelicula from "../cinemania/pages/AlquilarPelicula"
 
 const Router = createBrowserRouter([
 	{
@@ -21,7 +23,8 @@ const Router = createBrowserRouter([
 			{ path: "home", element: <HomePage /> },
 			{ path: "profile-edit", element: <ProfileEdit /> },
 			{ path: "historico-alquiler", element: <HistoricoAlquiler /> },
-			{ path: "devolver-pelicula", element: <DevolverPeliculas /> }
+			{ path: "devolver-pelicula", element: <DevolverPeliculas /> },
+			{ path: "alquilar-pelicula", element: <AlquilarPelicula /> },
 		],
 	},
 	{
@@ -32,6 +35,7 @@ const Router = createBrowserRouter([
 			{ path: "pelicula", element: <AddMoviePage /> },
 			{ path: "pelicula-actualizar", element: <UpdateMoviePage /> },
 			{ path: "contenido", element: <MoviesContentPage /> },
+			{ path: "usuarios", element: <DeleteUserPage />}
 		],
 	},
 	{
