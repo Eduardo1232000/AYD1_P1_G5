@@ -107,16 +107,18 @@ El administrador es el usuario con mayor privilegio en esta aplicacion debido a 
 
 ### Ingreso de Peliculas
 El administrador tiene la posibilidad de agregar contenido nuevo en el cual puede ser alquilado por los usuarios.
-
+![Imagen](./assets/AdminAgregarPelicula.png)
 ### Actualizacion de contenido
 El administrador puede tambien modificar la informacion de las peliculas que ya se encuentran para alquiler
-
+![Imagen](./assets/AdminContenido.png)
+![Imagen](./assets/AdminEditarContenido.png)
 ### Eliminacion de contenido
 El usuario puede quitar peliculas que desee y ya no seran accessibles por los usuarios.
+![Imagen](./assets/AdminEliminarContenido.png)
 
 ### Eliminacion de usuarios
 El administrador tambien puede eliminar usuarios de forma permanente
-
+![Imagen](./assets/AdminEliminarUsuario.png)
 
 # Backend
 En el backend se utilizo la herramienta Node para crear el servidor que sirve al frontend.<br>

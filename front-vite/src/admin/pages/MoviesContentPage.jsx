@@ -88,7 +88,7 @@ function MoviesContentPage() {
 					variant='contained'
 					color='primary'
 					onClick={goToAddMovie}>
-					Editar pelicula
+					Agregar pelicula
 				</Button>
 				<TableContainer
 					component={Paper}
