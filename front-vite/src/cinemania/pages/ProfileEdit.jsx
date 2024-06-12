@@ -69,17 +69,16 @@ const ProfileEdit = () => {
                 // Si está activo, la contraseña será la nueva contraseña
                 updatedPassword = values.newPassword;
 
-                // Verificar si la contraseña actual coincide con la contraseña obtenida en la consulta del perfil
-                if (values.currentPassword !== profile.password) {
-                    errorMessage("La contraseña actual es incorrecta.");
-                    return;
-                }
-
                 // Validar que la nueva contraseña coincida con la confirmación
                 if (values.newPassword !== values.confirmPassword) {
                     errorMessage("Las contraseñas no coinciden.");
                     return;
                 }
+            }
+            // Verificar si la contraseña actual coincide con la contraseña obtenida en la consulta del perfil
+            if (values.currentPassword !== profile.password) {
+                errorMessage("La contraseña actual es incorrecta.");
+                return;
             }
 
             const updatedProfile = { ...values, password: updatedPassword, fecha_nacimiento: formatDate(profile.fecha_nacimiento) };
