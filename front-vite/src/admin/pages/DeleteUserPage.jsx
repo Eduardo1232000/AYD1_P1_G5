@@ -122,7 +122,7 @@ function DeleteUserPage() {
 									<TableCell align='center'>{row.apellido}</TableCell>
 									<TableCell align='center'>{row.genero}</TableCell>
 									<TableCell align='center'>{row.correo}</TableCell>
-									<TableCell align='center'>{row.fecha_nacimiento}</TableCell>
+									<TableCell align='center'>{row.fecha_nacimiento.split("T")[0]}</TableCell>
 									<TableCell align='center'>{row.estado_usuario}</TableCell>
 									<TableCell align='center'>
 										<Button
