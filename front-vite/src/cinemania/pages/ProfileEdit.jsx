@@ -138,11 +138,14 @@ const ProfileEdit = () => {
             }
 
             if (changePassword) {
-                if (values.newPassword.length < 6) {
-                    errors.newPassword = 'La contraseña debe tener al menos 6 caracteres';
+                // Verificar que la nueva contraseña tenga al menos 8 caracteres y contenga al menos una letra mayúscula, una letra minúscula y un número
+                const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+                if (!passwordRegex.test(values.newPassword)) {
+                    errors.newPassword = 'La contraseña debe tener al menos 8 caracteres y contener al menos una letra mayúscula, una letra minúscula y un número';
                 }
-                if (values.confirmPassword.length < 6) {
-                    errors.confirmPassword = 'La contraseña debe tener al menos 6 caracteres';
+    
+                if (values.confirmPassword.length < 8 || !passwordRegex.test(values.confirmPassword)) {
+                    errors.confirmPassword = 'La contraseña debe tener al menos 8 caracteres y contener al menos una letra mayúscula, una letra minúscula y un número';
                 }
             }
 

@@ -18,33 +18,45 @@ function RegisterPage() {
 	const formik = useFormik({
 		initialValues: formData,
 		validate: (values) => {
-			const errors = {}
+			const errors = {};
 			if (!values.username) {
-				errors.username = "Este campo es obligatorio."
+				errors.username = "Este campo es obligatorio.";
 			}
 			if (!values.lastname) {
-				errors.fullname = "Este campo es obligatorio."
+				errors.fullname = "Este campo es obligatorio.";
 			}
 			if (!values.email) {
-				errors.email = "Este campo es obligatorio."
+				errors.email = "Este campo es obligatorio.";
+			} else {
+				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				if (!emailRegex.test(values.email)) {
+					errors.email = "Formato de correo electrónico inválido.";
+				}
 			}
 			if (!values.gender) {
-				errors.gender = "Este campo es obligatorio."
+				errors.gender = "Este campo es obligatorio.";
 			}
 			if (values.gender !== "M" && values.gender !== "F") {
-				errors.gender = "Los unicos valores permitidos son F o M."
+				errors.gender = "Los únicos valores permitidos son F o M.";
 			}
 			if (!values.password) {
-				errors.password = "Este campo es obligatorio."
+				errors.password = "Este campo es obligatorio.";
+			} else if (values.password.length < 8) {
+				errors.password = "La contraseña debe tener al menos 8 caracteres.";
+			} else {
+				const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+				if (!passwordRegex.test(values.password)) {
+					errors.password = "La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número.";
+				}
 			}
 			if (!values.passwordConfirm) {
-				errors.passwordConfirm = "Este campo es obligatorio."
+				errors.passwordConfirm = "Este campo es obligatorio.";
 			} else if (values.password !== values.passwordConfirm) {
-				errors.passwordConfirm = "Las contraseñas no coinciden."
+				errors.passwordConfirm = "Las contraseñas no coinciden.";
 			}
-			return errors
+			return errors;
 		},
-		onSubmit: async ({ username, lastname, email, gender,birthdate, password }) => {
+		onSubmit: async ({ username, lastname, email, gender, birthdate, password }) => {
 			try {
 				await postRegister({
 					username,
@@ -53,17 +65,17 @@ function RegisterPage() {
 					gender,
 					birthdate,
 					password,
-				})
-
-				successMessage("Usuario registrado exitosamente.")
+				});
+				successMessage("Usuario registrado exitosamente.");
 			} catch (error) {
-				console.error(error)
-				errorMessage("Error al registrar usuario.")
+				console.error(error);
+				errorMessage("Error al registrar usuario.");
 			} finally {
-				handleReset()
+				handleReset();
 			}
 		},
-	})
+	});
+
 
 	const handleReset = () => {
 		formik.resetForm()
@@ -171,8 +183,8 @@ function RegisterPage() {
 					helperText={
 						formik.errors.birthdate && formik.touched.birthdate ? formik.errors.birthdate : ""
 					}
-				/>	
-				
+				/>
+
 
 				<TextField
 					label='Contraseña'
