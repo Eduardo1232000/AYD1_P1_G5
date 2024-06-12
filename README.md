@@ -150,7 +150,7 @@ La base de datos que se utilizo en el proyecto fue MySQL debido a que es una bas
 ![Kanban Inicio 1](./assets/Kanban%20Medio.jpg)
 
 ### Finalizacion del sprint
-
+![Kanban Inicio 1](./assets/Kanban%20fin.jpg)
 <br>
 
 # LINK GRABACIONES REALIZADAS
