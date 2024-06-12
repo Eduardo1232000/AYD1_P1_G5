@@ -1,5 +1,6 @@
 const express = require('express');
 const pool = require('../database/db');         //BASE DE DATOS
+const { format } = require('date-fns');
 const router = express.Router();
 
 //SOLO SE AGREGO PARA PROBAR QUE FUNCIONAN LOS ARCHIVOS SEPARADOS
@@ -89,14 +90,17 @@ router.post('/penalizacion', async (req, res) => {
     }
 });
 
-// Devuelve true si se actualizo correctamente y mensaje.
+// Devuelve true si se actualizó correctamente y mensaje.
 router.post('/devolver', async (req, res) => {
     const { correo, titulo } = req.body; // Obtén correo y título desde el cuerpo de la solicitud
+
+    // Fecha formateada para la actualización
+    const fechaDevolucion = format(new Date(),  'yyyy-MM-dd HH:mm:ss'); // Obtener la fecha formateada
 
     // Consulta SQL para actualizar el alquiler
     const query = `
         UPDATE alquileres
-        SET fecha_devolucion = NOW(),
+        SET fecha_devolucion = ?,
             estado_alquiler = 0
         WHERE correo = ? 
             AND titulo = ? 
@@ -104,12 +108,13 @@ router.post('/devolver', async (req, res) => {
     `;
 
     try {
-        const [result] = await pool.execute(query, [correo, titulo]);
+        const [result] = await pool.execute(query, [fechaDevolucion, correo, titulo]);
 
         if (result.affectedRows > 0) {
             res.json({
                 success: true,
-                message: 'Alquiler devuelto exitosamente.'
+                message: 'Alquiler devuelto exitosamente.',
+                fechaDevolucion: fechaDevolucion // Agregar fecha formateada a la respuesta
             });
         } else {
             res.json({
@@ -125,6 +130,7 @@ router.post('/devolver', async (req, res) => {
         });
     }
 });
+
 
 // OBTENER LOS DATOS DEL USUARIO POR MEDIO DEL CORREO en DATA
 router.post('/perfil', async (req, res) => {

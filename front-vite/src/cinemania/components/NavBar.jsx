@@ -58,16 +58,6 @@ function NavBar() {
 						<Button
 							sx={{ color: "#fff" }}
 							component={Link}
-							to='/home'>
-							Comentar Contenido
-						</Button>
-						<Divider orientation='vertical' flexItem
-							sx={{ backgroundColor: "#0f3c5a", mx: 1 }}
-						/>
-
-						<Button
-							sx={{ color: "#fff" }}
-							component={Link}
 							to='/devolver-pelicula'>
 							Devolver pelicula
 						</Button>

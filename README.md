@@ -40,11 +40,18 @@ React es una de las librerias mas populares de Javascript para el desarrollo de 
 
 ## Login
 En el login se crearon formularios los cuales obtienen el correo y la contraseña las cuales se envian al backend. El backend compara los datos con la base de datos, y si encontro un registro igual, entonces retorna al frontend un mensaje de exito, y este redirige al usuario su ventana respectiva. Si el usuario no posee una cuenta entonces desde el frontend se mostrara un boton el cual lo redirigira a la ventana para registrar sus datos.
+![Imagen](./assets/login.png)
 
 ## Registro
 En esta ventana se recopila toda la informacion del usuario, el cual es Nombre, Apellido, Genero, Email, Fecha de nacimiento y contraseña, Cuando el usuario presiona el boton registrar esa informacion se envia al backend y se verifica que no exista un usuario con ese mismo correo. si no existe ningun usuario igual, entonces se almacena en la base de datos, retornando un mensaje de exito.
+![Imagen](./assets/registro.png)
 
 ## Dashboard Usuario
+### Página Principal
+El usuario tiene la posibilidad de visualizar el catálogo de películas del sitio, con su información y comentarios.
+![Dashboard](./assets/dashboard.png)
+![Info pelicula](./assets/verpelicula.png)
+
 En este apartado el usuario tiene a su disposicion varias funcionalidades, como son:
 
 <li>Comentar Contenido</li>
@@ -53,20 +60,42 @@ En este apartado el usuario tiene a su disposicion varias funcionalidades, como 
 <li>Historial de Alquiler</li>
 <li>Editar Perfil</li>
 
+
+
 ### Comentar Contenido
-El usuario tiene la posibilidad de visualizar y agregar comentarios a las diferentes peliculas que puede encontrar.
+El usuario tiene la posibilidad de visualizar, agregar y eliminar sus comentarios a las diferentes peliculas que puede encontrar.
+![Comentando](./assets/comentando.png)
+
+![Comentando](./assets/vercomentario.png)
 
 ### Alquiler de Peliculas
-El usuario tiene la posibilidad de alquilar peliculas de las que aparecen en pantalla. Si esta ya esta alquilada entonces ya no la podra alquilar
+El usuario tiene la posibilidad de alquilar peliculas de las que aparecen en pantalla. Si esta ya esta alquilada entonces ya no la podra alquilar, por lo que no será visible en esta pantalla.
+![Imagen](./assets/veralquiler.png)
+
+Al hacer clic sobre la película se desplegará la información con el botón alquilar 
+![Imagen](./assets/verpelialquiler.png)
+![Imagen](./assets/confirmaalquiler.png)
+Luego de confirmar la cita se desplegará mensaje de pelicula alquilada exitosamente, y se eliminará de la lista de peliculas disponibles.
+![Imagen](./assets/alquiler.png)
 
 ### Devolver pelicula
 El usuario despues de alquilar una pelicula debe devolverla en su devido tiempo teniendo que pagar el monto que se especifico + multa si se excedio con el tiempo de devolucion
+![Imagen](./assets/devolverpeli.png)
+![Imagen](./assets/infodevolver.png)
+![Imagen](./assets/devuelto.png)
 
 ### Historial de alquiler
 El usuario puede visualizar el historial de las peliculas que ha alquilado a traves del tiempo.
+![Imagen](./assets/historial.png)
+
 
 ### Editar perfil
 El usuario tiene la posibilidad de editar la informacion que proporciono en el apartado de registro y modificar toda su informacion con excepcion del Email.
+![Imagen](./assets/perfil.png)
+En caso que el usuario no ingrese correctamente su contraseña actual mostrará error
+![Imagen](./assets/errorpass.png)
+Si los datos fueron correctamente ingresados se almacenan y muestra mensaje correcto.
+![Imagen](./assets/perfilg.png)
 
 ## Dashboard Administrador
 El administrador es el usuario con mayor privilegio en esta aplicacion debido a que tiene el control total de las peliculas y usuarios, pudiendo eliminarlos. las funcionalidades que posee el administrador son las siguientes: <br>
@@ -78,16 +107,18 @@ El administrador es el usuario con mayor privilegio en esta aplicacion debido a 
 
 ### Ingreso de Peliculas
 El administrador tiene la posibilidad de agregar contenido nuevo en el cual puede ser alquilado por los usuarios.
-
+![Imagen](./assets/AdminAgregarPelicula.png)
 ### Actualizacion de contenido
 El administrador puede tambien modificar la informacion de las peliculas que ya se encuentran para alquiler
-
+![Imagen](./assets/AdminContenido.png)
+![Imagen](./assets/AdminEditarContenido.png)
 ### Eliminacion de contenido
 El usuario puede quitar peliculas que desee y ya no seran accessibles por los usuarios.
+![Imagen](./assets/AdminEliminarContenido.png)
 
 ### Eliminacion de usuarios
 El administrador tambien puede eliminar usuarios de forma permanente
-
+![Imagen](./assets/AdminEliminarUsuario.png)
 
 # Backend
 En el backend se utilizo la herramienta Node para crear el servidor que sirve al frontend.<br>

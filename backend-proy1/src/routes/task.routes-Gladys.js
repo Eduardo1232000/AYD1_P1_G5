@@ -102,12 +102,11 @@ router.post('/alquilarpelicula', async (req, res) => {
             return;
         }
 
-        // Fecha
+        // Fecha con hora
         const now = new Date();
         const futureDate = addDays(now, 2);
-        const devolucion = format(futureDate, 'yyyy-MM-dd');
-        const alquiler = format(now, 'yyyy-MM-dd');
-
+        const devolucion = format(futureDate, 'yyyy-MM-dd HH:mm:ss');
+        const alquiler = format(now, 'yyyy-MM-dd HH:mm:ss');
 
         // INSERTAR EL ALQUILER EN LA BASE DE DATOS
         await pool.query('INSERT INTO alquileres(correo, titulo, fecha_alquiler, fecha_devolucion, estado_alquiler) VALUES (?, ?, ?, ?, 1)', [correo, titulo, alquiler, devolucion]);
@@ -115,7 +114,7 @@ router.post('/alquilarpelicula', async (req, res) => {
         res.json({ success: true, message: 'Película alquilada correctamente', devolucion });
     } catch (error) {
         console.error('Error al Alquilar Película:', error);
-        res.status(500).json({ success: false, message: 'Error al Alquilar Película'+ error });
+        res.status(500).json({ success: false, message: 'Error al Alquilar Película' + error });
     }
 });
 
